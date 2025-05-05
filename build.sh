@@ -1,5 +1,5 @@
 #builds docker project
-docker build -t 422-Final . 
+docker build -t 422-Final .dockerfile
 
 
 #runs docker project 

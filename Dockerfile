@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 3030
 
-CMD ["node", "services.js"]
+CMD ["node", "src/services.js"]
