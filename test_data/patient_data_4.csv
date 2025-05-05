@@ -1,0 +1,2 @@
+FirstName,LastName,DOB,Email,Address,SSN,PhoneNumber,InsuranceID,InsuranceCarrier,Symptoms,Diagnosis
+Eric,Rose,1989-09-07,eric.rose97@coruscant.space,"954 Hanson Turnpike, Ericafort, VA 19735",710-37-0415,535.250.0117,INS-8990-8170,Aetna,Abdominal Pain; Runny Nose,COVID-19

@@ -30,15 +30,21 @@ module.exports = {
             })
             .on('end', () => {
                 fs.rename(file, processedFile, (err) => {
-                    if (err) { return; }
-
+                    if (err) {
+                        console.warn('\x1b[38;2;255;165;0m%s\x1b[0m',"Error moving file to processed");
+                         return; }
+                   
+                         console.info('moving ' ,file,' file to processed');
                     fs.writeFile(outputFile, JSON.stringify(rows, null, 2), (err) => {
-                        if (err) { return; }
-
+                        if (err) { 
+                            console.error('\x1b[38;2;255;165;0m%s\x1b[0m',"There was a problem creating Json file ", err); 
+                            return; }
+                       
+                        
                         console.info('\x1b[38;2;0;0;170m%s\x1b[0m', `Parsed ${file}`);
                     });
                 });
             })
-            .on('error', (err) => { });
+            .on('error', (err) => {console.error("Error found: ",err) });
     }
 };
