@@ -16,22 +16,29 @@ module.exports = {
         parser.setProcessed(processed);
 
         console.info();
-        console.info('\x1b[38;2;0;0;170m%s\x1b[0m', 'Watching folder:');
+        console.info('\x1b[38;2;0;0;170m%s\x1b[0m', 'Watching folder: ');
         console.info(`${watched}`);
         console.info();
 
         // Use chokidar because fs.watch is a pile of garbage
         const watcher = chokidar.watch(watched, {
             ignored: (path, stats) => {
-                return stats?.isFile() && !path.endsWith('.csv')
+               
+                if (stats?.isFile() && !path.endsWith('.csv')){
+                    
+                    console.warn("File is not a CSV!!");
+                    
+                    return true;
+                }
+                else 
+                {return stats?.isFile() && !path.endsWith('.csv');}
             },
             persistent: true
         });
 
-        watcher
-            .on('add', (path) => {
+        watcher.on('add', (path) => {
                 parser.processChange(path);
             })
-            .on('error', (err) => { });
+            .on('error', (err) => { console.error("Error found: ",err)});
     }
 };
